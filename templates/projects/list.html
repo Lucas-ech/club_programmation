@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load bleach_tags %}
+
+{% block content %}
+<div class="row">
+	<h1>Projets</h1>
+	{% if perms.projects.add_project %}
+	<a href="{% url 'projects_edit' %}" class="btn primary">Créer un nouveau projet</a>
+	{% endif %}
+	<hr/>
+	{% for project in projects %}
+	<article class="row project-list">
+		<div class="col-md-2 hidden-sm hidden-xs project-img">
+			<img src="{{ project.language.image }}" alt="">
+		</div>
+		<div class="col-md-8">
+			<h2><a href="{% url 'projects_view' project.slug %}">{{ project.title }}</a></h2>
+			{% if not project.online %}
+		<span class="label label-danger">Hors Ligne</span>
+	{% endif %}{{ project.content|truncatechars:250|bleach }}
+		</div>
+	</article>
+	{% empty %}
+		<p>Aucun projet n'a encore été publié.</p>
+	{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,169 @@
+html, body {
+	margin:0;
+	padding: 0;
+	color: #222;
+	background-image: url('../img/background.png');
+}
+@font-face {
+  font-family: 'Dosis';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Dosis SemiBold'), local('Dosis-SemiBold'), url(../fonts/Dosis.woff) format('woff');
+}
+
+h1, h2,  h6, hr {
+	padding:  0;
+	margin:  0;
+}
+h2 {
+	margin-top:  25px;
+}
+h1 {
+	color: #003B10;
+}
+h6 {
+	font-size: 11px;
+}
+hr {
+	background-color: #AAA;
+	border: 0;
+	height: 1px;
+}
+input[type="text"], input[type="password"] {
+	border: 1px solid #999;
+}
+header {
+	font-family: 'Dosis', sans-serif;
+	font-size: 26px;
+	color: #DDD;
+	background-color: #047620;
+	height: 110px;
+	padding: 0;
+	padding-left: 10px;
+	margin-bottom:  15px;
+}
+header .sitename {
+	font-size: 16px;
+	float: right;
+	line-height: 20px;
+	height: 80px;
+	text-decoration: none;
+	width: 150px;
+	padding-top: 30px
+
+}
+header a {
+	text-decoration: none;
+	color: #DDD;
+}
+header a:hover, header a:active {
+	text-decoration: none;
+	color: #FFF;
+}
+header nav {
+	display: inline-block;
+}
+header nav ul {
+	margin: 0;
+	line-height: 110px;
+	height: 110px;
+
+}
+header nav ul li {
+	display: inline-block;
+}
+header .nav-right {
+	float: right;
+	padding: 0 5px;
+	margin: 0;
+	font-size: 20px;
+	height: 110px;
+	line-height: 110px;
+	/*background-color: #04A646;*/
+	background-color: rgba(48, 7, 92, 1);
+	list-style: none;
+}
+header ul.nav-right {
+	line-height: 50px;
+}
+header ul.nav-right li {
+	height: 50%;
+}
+article {
+	margin-top: 10px;
+}
+article .project-img {
+	margin-right: 40px;
+}
+.btn {
+	background-color: #BBB;
+	padding: 6px 12px;
+	height: 30px;
+	color: #000;
+	border: 0;
+	display: inline-block;
+	margin: 8px 0;
+}
+
+.btn:hover {
+	text-decoration: none;
+	color: #444;
+}
+
+.btn.primary {
+	color: #FFF;
+	background-color: #047620;
+}
+.btn.error {
+	background-color: #E60E0E;
+}
+.btn.warning {
+	background-color: #E34928;
+}
+.project-list {
+	background-color: #FFF;
+	padding-bottom: 10px;
+}
+.text-center {
+	text-align: center;
+}
+
+#homepage-lycee {
+	border: 4px solid #047620;
+	border-radius: 2px;
+}
+
+#project_edit input[type="text"] {
+	width: 50%;
+}
+
+#userlist {
+	background-color: white;
+	height: 30px;
+	width: 50%;
+}
+
+#userlist input[type="text"] {
+	height: 22px;
+	width: 110px;
+	border: 0;
+	margin-top: 4px;
+	background-color: inherit;
+}
+
+.userlist_user {
+	height: 26px;
+	margin: 2px;
+	border: 1px solid #AAA;
+	line-height: 26px;
+	display: inline-block;
+	padding: 0 5px;
+}
+
+.userlist_user button {
+	border: 0px none;
+	background-color: inherit;
+	margin: 0px;
+	margin-left: 4px;
+	padding: 0px;
+}

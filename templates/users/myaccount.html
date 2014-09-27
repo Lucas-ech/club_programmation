@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+	<h1>Mon compte</h1><hr/>
+	<strong>Nom d'utilisateur: </strong>{{ user.username|capfirst }}
+	<br/>
+	<strong>Adresse Email: </strong>{{ user.email }}
+	<br/>
+	<strong>Dernière connexion: </strong>{{ user.last_login|date:"d/m/Y à H:i" }}
+	<br/>
+	<strong>Date d'inscription: </strong>{{ user.date_joined|date:"d/m/Y à H:i" }}
+	<br/>
+	<p>
+		<a href="{% url 'users_configuration' %}" class="btn warning">Modifier mon mot de passe</a>
+	</p>
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="/assets/css/jquery-ui.min.css">
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="/assets/js/jquery.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/assets/js/projects_edit.autocomplete.js"></script>
+<script type="text/javascript" src="/assets/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+	tinymce.init({
+	    selector: "textarea",
+	 });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	{% if not project %}
+	<h1>Créer un projet</h1>
+	{% else %}
+	<h1>Éditer un projet</h1>
+	{% endif %}
+	<hr/>
+	{% if project %}
+	<form method="post" action="{% url 'projects_edit' project.slug %}" id="project_edit">
+	{% else %}
+	<form method="post" action="{% url 'projects_edit' %}" id="project_edit">
+	{% endif %}
+		{% csrf_token %}
+		<div class="fieldWrapper">
+		<p>
+		    {{ form.title.errors }}
+			<label for="id_title">{{ form.title.label }}&nbsp;:</label> {{ form.title }}
+		</p>
+		{% if project %}
+		<label for="userlist_input">Auteurs:</label>
+		<div id="userlist">
+			{% for author in project.author.all %}
+		    <div class="userlist_user">
+				<span>{{ author.username|capfirst }}</span><button class="userlist_remove"><i class="glyphicon glyphicon-remove-circle"></i></button>
+				<input type="hidden" name="authors" value="{{ author.username }}">
+			</div>
+			{% endfor %}
+			<input type="text" id="userlist_input" placeholder="Ajouter...">
+		</div>
+		{% endif %}
+		<p>
+		    {{ form.content.errors }}
+			{{ form.content }}
+		</p>
+		<p>
+		    {{ form.language.errors }}
+			<label for="id_language">{{ form.language.label }}&nbsp;:</label> {{ form.language }}
+		</p>
+		<p>
+		    {{ form.source.errors }}
+			<label for="id_source">{{ form.source.label }}&nbsp;:</label> {{ form.source }}
+		</p>
+		<p>
+		    {{ form.online.errors }}
+			<label for="id_online">{{ form.online.label }}&nbsp;</label> {{ form.online }}
+		</p>
+		</div>
+		<input type="submit" class="btn primary" value="Enregistrer"/>
+	</form>
+</div>
+{% endblock %}

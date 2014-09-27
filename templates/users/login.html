@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+	<h1>Se connecter</h1><hr/>
+	{% if error %}
+	<p><strong>Utilisateur inexistant ou mauvais mot de passe.</strong></p>
+	{% endif %}
+
+	<form method="post" action="{% url 'users_login' %}">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" class="btn primary" value="Se connecter"/>
+	</form>
+</div>
+{% endblock %}

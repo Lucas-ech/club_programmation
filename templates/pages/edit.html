@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block scripts %}
+<script type="text/javascript" src="/assets/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+	tinymce.init({
+	    selector: "textarea"
+	 });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<h1>Éditer une page</h1>
+	<hr/>
+	<form method="post" action="{% url 'pages_edit' page.name %}">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" class="btn primary" value="Enregistrer"/>
+	</form>
+</div>
+{% endblock %}

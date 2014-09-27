@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+	<h1>Configuration du compte</h1><hr/>
+	<form method="post" action="{% url 'users_configuration' %}">
+		<fieldset>
+			<legend>Mot de passe</legend>
+				{% csrf_token %}
+				{{ form.as_p }}
+			<input type="submit" class="btn error" value="Modifier">
+		</fieldset>
+	</form>
+</div>
+{% endblock %}

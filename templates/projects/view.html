@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block scripts %}
+<script type="text/javascript" src="/assets/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+	tinymce.init({
+	    selector: "textarea",
+	 });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<article>
+		<h1>{{ project.title }}</h1>
+		<h6>Par
+		{% for author in project.author.all %}
+		 {{ author.username|capfirst }},
+		{% endfor %}
+		 le <time datetime="{{ project.created|date:"Y-m-d\TH:i:s" }}">{{ project.created|date:"d/m/Y à H:i" }}</time></h6>
+		{% if user.is_superuser or user in project.author.all and perms.projects.add_project %}
+		<a class="btn primary" href="{% url 'projects_edit' project.slug %}">Éditer</a>
+		{% endif %}
+		{% if not project.online %}
+		<div class="alert alert-danger">Ce projet n'est pas encore en ligne.</div>
+		{% endif %}
+		<h2>Présentation</h2><hr/>
+		{{ project.content|safe }}
+		{% if project.source %}
+		<h2>Téléchargement</h2><hr/>
+		<p>Télécharger l'executable associé à ce projet: <a href="{{ project.source }}">{{ project.source }}</a></p>
+		{% endif %}
+	</article>
+
+	<h2>Commentaires</h2><hr/>
+	{% for comment in comments %}
+		<h4>Par {{ comment.author.username|capfirst }}, le <time datetime="{{ comment.created|date:"Y-m-d\TH:i:s" }}">{{ comment.created|date:"d/m/Y à H:i" }}</time></h4>
+		{{ comment.content|safe }}
+	{% empty %}
+		<p><strong>Aucun commentaire</strong></p>
+	{% endfor %}
+	{% if form %}
+		<form action="{% url 'projects_savecomment' project.slug %}" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<p><input type="submit" class="btn primary" value="Envoyer un commentaire"></p>
+		</form>
+	{% endif %}
+
+</div>
+{% endblock %}

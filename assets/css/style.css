@@ -71,6 +71,11 @@ header nav ul {
 }
 header nav ul li {
 	display: inline-block;
+	margin-left: 5px;
+}
+header nav li:not(:last-child):after{
+ 	content:'~';
+	margin-left: 10px;
 }
 header .nav-right {
 	float: right;

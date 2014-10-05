@@ -2,7 +2,7 @@
 -------
 Site internet consacré au club programmation (2014/2015) du [lycée Réaumur](http://www.lycees-reaumur-buron.fr)
 
-Réalisé avec [Python](https://www.python.org/) 3.2 à l'aide du framework [Django](https://www.djangoproject.com/) 1.6.
+Réalisé avec [Python](https://www.python.org/) 3.4 à l'aide du framework [Django](https://www.djangoproject.com/) 1.7.
 
 ##Fonctionnalités
 ----

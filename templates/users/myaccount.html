@@ -2,17 +2,33 @@
 
 {% block content %}
 <div class="row">
-	<h1>Mon compte</h1><hr/>
-	<strong>Nom d'utilisateur: </strong>{{ user.username|capfirst }}
-	<br/>
-	<strong>Adresse Email: </strong>{{ user.email }}
-	<br/>
-	<strong>Dernière connexion: </strong>{{ user.last_login|date:"d/m/Y à H:i" }}
-	<br/>
-	<strong>Date d'inscription: </strong>{{ user.date_joined|date:"d/m/Y à H:i" }}
-	<br/>
-	<p>
-		<a href="{% url 'users_configuration' %}" class="btn warning">Modifier mon mot de passe</a>
-	</p>
+<h1>Mon compte</h1><hr/>
+<h2>Mes informations</h2>
+<strong>Nom d'utilisateur: </strong>{{ user.username|capfirst }}
+<br/>
+<strong>Adresse Email: </strong>{{ user.email }}
+<br/>
+<strong>Dernière connexion: </strong>{{ user.last_login|date:"d/m/Y à H:i" }}
+<br/>
+<strong>Date d'inscription: </strong>{{ user.date_joined|date:"d/m/Y à H:i" }}
+<br/>
+<p>
+<a href="{% url 'users_configuration' %}" class="btn warning">Modifier mon mot de passe</a>
+</p>
+<h2>Informations sur votre compte de reauprog.fr</h2>
+
+<h3>Où sont stockées les données de reauprog.fr ?</h3>
+<p>Le site internet et la base de données ( projets, comptes, commentaires, … ) sont stockées chez Lucas Echard. Lucas est membre du club programmation. C'est aussi lui qui a développé le site. Le serveur est un Raspberry Pi, un ordinateur de la taille d'une biscotte. Il est connecté en permanence à Internet pour fournir un accès permanent au site.</p>
+
+<h3>De quelles protections bénéficient mes données ?</h3>
+<p>Les mots de passe sont chiffrés par l'algorithme « pbkdf2_sha256 ». Le reste de la base n'est pas cryptée, mais reste inaccessible aux internautes.<p>
+
+<h3>La base de donnée est elle déclarée à la <a href="http://www.cnil.fr/">CNIL</a> ( Commission Nationale de l'Informatique et des Libertés ) ?</h3>
+<p>La plupart des grandes organisations stockant des données relatives aux utilisateurs déclarent leurs fichiers dans un souci de légalité. Cependant, nous ne le faisons pas. En effet, après avoir parcouru le site officiel ( <a href="http://www.cnil.fr/">CNIL</a> ), nous avons droit à une dispense tant qu'on ne parle pas de politique et qu'on ne distribue pas vos données. Rassurez vous, c'est loin d'être notre attention. ;-)</p>
+
+<h3>Et donc … à quoi servent nos données personnelles ?</h3>
+<p>Vos données personnelles, c'est à dire votre login et votre mot de passe ne sont utilisés que pour vous connecter au site pour accéder à l'espace utilisateur. Votre prénom ( ou pseudo si vous refusez d'utiliser votre prénom réel ) est visible par n'importe quel visiteur lorsque vous postez un commentaire ou un projet. Il sert de signature en quelque sorte. Aucune autre donnée personnelle est utilisée. Cependant les projets que vous postez sur le site sont disponibles à n'importe quel internaute. Cela vous permettra de partager vos productions avec toutes vos connaissances.</p>
+
+<p>Si vous avez un doute, une question ou une suggestion, n'hésitez pas à nous en faire part.</p>
 </div>
 {% endblock %}

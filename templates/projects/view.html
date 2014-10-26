@@ -11,13 +11,13 @@
 
 {% block content %}
 <div class="row">
-	<article>
-		<h1>{{ project.title }}</h1>
+	<article itemscope itemtype="http://schema.org/BlogPosting">
+		<h1 itemprop="name">{{ project.title }}</h1>
 		<h6>Par
 		{% for author in project.author.all %}
-		 {{ author.username|capfirst }},
+		 <span itemprop="author">{{ author.username|capfirst }}</span>,
 		{% endfor %}
-		 le <time datetime="{{ project.created|date:"Y-m-d\TH:i:s" }}">{{ project.created|date:"d/m/Y à H:i" }}</time></h6>
+		 le <time datetime="{{ project.created|date:"Y-m-d\TH:i:s" }}" itemprop="datePublished">{{ project.created|date:"d/m/Y à H:i" }}</time></h6>
 		{% if user.is_superuser or user in project.author.all and perms.projects.add_project %}
 		<a class="btn primary" href="{% url 'projects_edit' project.slug %}">Éditer</a>
 		{% endif %}
@@ -25,7 +25,9 @@
 		<div class="alert alert-danger">Ce projet n'est pas encore en ligne.</div>
 		{% endif %}
 		<h2>Présentation</h2><hr/>
-		{{ project.content|safe }}
+		<div itemprop="articleBody">
+			{{ project.content|safe }}
+		</div>
 		{% if project.source %}
 		<h2>Téléchargement</h2><hr/>
 		<p>Télécharger l'executable associé à ce projet: <a href="{{ project.source }}">{{ project.source }}</a></p>
@@ -34,8 +36,10 @@
 
 	<h2>Commentaires</h2><hr/>
 	{% for comment in comments %}
-		<h4>Par {{ comment.author.username|capfirst }}, le <time datetime="{{ comment.created|date:"Y-m-d\TH:i:s" }}">{{ comment.created|date:"d/m/Y à H:i" }}</time></h4>
-		{{ comment.content|safe }}
+		<div itemprop="comment">
+			<h4>Par {{ comment.author.username|capfirst }}, le <time datetime="{{ comment.created|date:"Y-m-d\TH:i:s" }}">{{ comment.created|date:"d/m/Y à H:i" }}</time></h4>
+			{{ comment.content|safe }}
+		</div>
 	{% empty %}
 		<p><strong>Aucun commentaire</strong></p>
 	{% endfor %}
